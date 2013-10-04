@@ -1,0 +1,305 @@
+21. ¿Qué diferencia hay entre "\t\n" y '\t\n'?
+Las comillas dobles "" busca las sustituciones, secuencias  que empiezan por una barra / y la reemplaza por su valor binario, por ejemplo /n y también la secuencia #{expresión } es sustituida por el valor de la expresión.  Las comillas simples '', sin embargo muestran la secuencia de escape tal cual.
+En el primer caso se haría la tabulación y el salto de línea y en el segundo se mostraría t\n.
+
+
+22. ¿Cómo funciona %q? ¿Qué es %q{hello world\n}? ¿Qué es %q{'a' 'b' 'c'}?
+Construye una cadena de literales como si estuviera delimitada entre comillas simples.
+
+
+23. ¿Cómo funciona %Q? ¿Qué es %Q{hello world\n}? ¿Qué es %Q{"a" "b" "c"}?
+Construye una cadena de literales como si estuviera delimitada entre comillas dobles.
+
+
+24. ¿Qué queda en c?
+# HERE sin comillas, hace que todo el código que escriba entre dos "here" y se introduzca en la variable c y se interpreten los comandos. Funciona como si estuviese entre comillas dobles.
+--4--
+--2--
+
+
+25. ¿Qué queda en c?
+# 'HERE' con comillas simples, hace que todo el código que escriba entre dos "here" se meta en la variable c y no se interpreten los comandos. Funciona como si estuviese entre comillas simples. Queda:
+ --\#{a}--\n--\#{b}--\n
+
+
+26. s = "hello". ¿Cuál es el valor de las siguientes expresiones?
+s[0,2] => "he"
+s[-1,1] => "o"
+s[0,10] => "hello"
+
+
+27. ¿Qué queda en g?
+Concatena las cadenas. Queda:
+g = "hello world"
+
+
+28. ¿Qué queda en e?
+Repite el símbolo tantas veces como se le indique. Queda: 
+'...'
+
+
+29. ¿Cuál es el resultado?
+Suma uno a la "a" y lo repite tres veces. Queda: 
+'222'
+
+
+30. ¿Qué es esto? %w[this is a test]
+Crea un vector de palabras. Cada palabra es un elemento. Queda:
+["this", "is", "a", "test"]
+
+
+31. ¿Qué es esto? %w[\t \n]
+Queda: 
+"["\\t", "\\n"]"
+
+
+32. ¿Qué es esto? %W[\t \n]
+Queda:
+"["\t", "\n"]
+
+
+33. ¿Qué contiene nils? nils = Array.new(3)
+Un array con tres elementos inicializado a nil.
+
+
+34. ¿Qué contiene zeros? zeros = Array.new(3, 0)
+Un array de tres elementos inicializado a cero.
+
+
+35. ¿Qué queda en b?
+Crea una copia del array x en b.
+[[1,2],[3,4]]
+
+
+36. ¿Qué queda en c?
+Queda: [0,2,4]
+
+
+37. ¿Cuál es el resultado de cada una de estas operaciones?
+>> a = ('a'..'e').to_a  
+=> ["a", "b", "c", "d", "e"]  // Itera desde "a" hasta "e" y lo almacena en a.
+>> a[1,1]
+=>["b"]  // Muestra desde la posición 1, 1 elemento.
+>> a[-2,2]
+=>["d","e"] // Muestra desde la posición -2, 2 elementos.
+>> a[0..2] 
+=>["a","b","c"]  // Muestra de 0 a 2.
+>> a[0..1]
+=>["a","b"] //Muestra de 0 a 1.
+>> a[-2..-1]
+=>["d","e"] // Muestra de -2 a -1.
+
+
+38. ¿Cuál es el resultado de cada una de estas operaciones?
+>> a
+=> ["a", "b", "c", "d", "e"]
+>> a[0,2] = %w{A B} // cambia la posición 0 y 2 por A y B
+=> ["A", "B"]
+>> a
+=>["A", "B", "c", "d", "e"]    //Sustituye lo que hay en las casillas 0 y 1 del vector.
+>> a[2..5] = %w{C D E}  // cambia de 2 a 5.
+=> ["C", "D", "E"]
+>> a
+=>["A", "B", "C", "D", "E"]    // Sustituye lo que hay desde la casilla 2 hasta la 5..
+>> a[0,0] = [1,2,3] #Inserta antes de la posición 0 , los valores 1,2,3. 
+=> [1, 2, 3]
+>> a
+=>[1,2,3,"A", "B", "C", "D", "E"]    // Añade por el principio.
+>> a[0,2] = []# 0 y 2 los cambia por []
+=> []
+>> a
+=>[3,"A", "B", "C", "D", "E"]        // Borra las dos primeras posiciones.
+
+
+39. ¿Cuál es el resultado de cada una de estas operaciones?
+>> a = (1...4).to_a     //  Un array de enteros de 1 a 3
+=>[1,2,3]
+>> a = a + [4, 5]     // Se le añade el array 4 y 5
+=>[1,2,3,4,5]
+>> a += [[6, 7, 8]]    // Si no están los valores se añaden al array
+=>[1,2,3,4,5,6,7,8]
+>> a = a + 9
+//Da error, no reconoce el número como un array, se debería que poner:
+>> a = a + [9]
+
+
+40. ¿Cuál es el resultado de cada una de estas operaciones?
+> x = %w{a b c b a}
+=> ["a", "b", "c", "b", "a"]
+> x = x - %w{b c b}
+=> ["a", "a"]
+
+
+41. ¿Cuál es el resultado de cada una de estas operaciones?
+Queda  un arrary de 8 elementos inicializado a cero. Resultado:
+[0,0,0,0,0,0,0,0]
+
+
+42. ¿Cuál es el resultado de cada una de estas operaciones?
+>> a = []   // Es un array vacío.
+=> []
+>> a << 1  // Se añade el 1 como elemento del array
+=>[1]
+>> a << 2 << 3 // Se añade el 2 y el 3 al array
+=> [1,2,3]
+>> a << [4, 5, 6]  //Se añade al array como un array que almacena los 3 valores.
+=>[1,2,3,[4,5,6]]
+>> a.concat [7, 8]
+=>[1,2,3,[4,5,6],7,8]
+# "<<" y .concat[ ]  // Se usa para concatenar elementos en array.
+
+
+43. ¿Cuál es el resultado de cada una de estas operaciones?
+>> a = [1, 1, 2, 2, 3, 3, 4]
+=> [1, 1, 2, 2, 3, 3, 4]
+>> b = [5, 5, 4, 4, 3, 3, 2]
+=> [5, 5, 4, 4, 3, 3, 2]
+>> c = a | b  // En c están los valores de a ó b
+=>[1,2,3,4,5]
+>> d = b | a  // En c están los valores de b ó a
+=>[5,4,3,2,1]
+>> e = a & b  // En c están los valores de los array a y b
+=>[2,3,4]
+>> f = b & a // En c están los valores de los array b y a
+=>[4,3,2]
+
+
+44. ¿Qué resultados dan las siguientes operaciones?
+>> a = 1..10  // Se almacena un rango de 1 a 10.
+=> 1..10
+>> a.class  // Dice de que tipo es el elemento a
+=> Range
+>> a.to_a
+    =>[1,2,3,4,5,6,7,8,9,10]
+>> b = 1...10
+=> 1....10
+>> b.to_a
+=>[1,2,3,4,5,6,7,8,9,10]
+>> b.include? 10   // Responde si en b esta el valor 10
+=>true
+>> b.include? 8
+=>true
+>> b.step(2) {|x| print "#{x} " }   // Muestra de 2 en 2 los valores de b.
+=>1 3 5 7 9 => 1...10
+>> 1..3.to_a
+Da un error no reconoce 1..3 n
+Nota: to_a convierte un rango en un array. Si se coloca (1..3).to_a
+
+
+45. ¿Qué resultados dan las siguientes operaciones?
+>> r = 0...100  // En r se almacena un rango de 1 a 99.
+=> 0....100
+>> r.member? 50 #Responde si 50 es miembro
+=>true
+>> r.include? 99.9 #Responde si 99.9 esta incluido en el rango.
+=>true
+>> r.member? 99.9 #Responde si 99.9 es miembro
+=>true
+
+
+46. ¿Qué resultados dan las siguientes operaciones?
+> true.class
+=> TrueClass
+> false.class
+=> FalseClass
+> puts "hello" if 0
+hello
+=> nil
+> puts "hello" if nil
+=> nil
+> puts "hello" if ""
+Da una advertencia de que existe un literal en la comparacion aunque muestra:
+hello
+=> nil
+
+
+47. ¿Qué resultados dan las siguientes operaciones?
+> x = :sym
+=> :sym
+> x.class
+=> Symbol
+> x == 'sym'
+=> false
+> x == :sym
+=> true
+> z = :'a long symbol'
+=> :"a long symbol"
+> z.class
+=> Symbol
+> x == 'sym'.to_sym
+=> true
+> x.to_s == 'sym'
+=> true
+
+
+48. ¿Qué resultados se dan?
+> s = "Ruby"
+=> "Ruby"
+> t = s
+=> "Ruby"
+> t[-1] = ""
+=> ""
+> print s
+Rub=> nil #Se elimina la última letra
+ t = "Java"
+=> "Java"
+> print s,t
+RubJava=> nil
+
+
+49. ¿Cuál es el resultado?
+> "%d %s" % [3,"rubies"]
+=> "3 rubies"
+
+
+50. ¿Cuáles son los resultados?
+> x, y = 4, 5
+=> [4, 5]
+> z = x > y ? x : y #Si x > y z = x sino z = y
+=> 5
+> x,y,z = [1,2,3]
+=> [1, 2, 3]
+
+
+51. ¿Qué resultados dan las siguientes operaciones?
+> x = { :a => 1 , :b => 2 }
+=> {:a=>1, :b=>2}
+> x.keys
+=> [:a, :b]
+> x.values
+=> [1, 2]
+> x[:c] = 3
+=> 3
+> x
+=> {:a=>1, :b=>2, :c=>3}
+> x.delete('a') #No puede eliminar porque no existe este elemento
+=> nil
+> x.delete(:a) #Se refiere al symbolo :a por eso si lo elimina
+=> 1
+> x
+=> {:b=>2, :c=>3}
+> x = {:a => 1, :b=>2, :c=>4}
+=> {:a=>1, :b=>2, :c=>4}
+> x.delete_if{|k,v| v%2 == 0} #Elimina si es multiplo de 2
+=> {:a=>1}
+> x
+=> {:a=>1}
+
+
+52. ¿Qué hace yield 4, 5?
+Llama a un bloque y le pasa los parámetros 4 y 5
+
+
+53. ¿Qué hace la siguiente sentencia? counts = Hash.new(0) 
+¿Qué diferencia hay con la asignación counts = {}?
+Ambos crean un hash vacío.
+
+
+54. ¿Qué retorna esta expresión? 'hello world, hello LPP'.scan /\w+/
+Recorre la cadena y crea un array donde cada palabra es un elemento 
+=> ["hello", "world", "hello", "LPP"]
+
+
+55. Explique que hacen estas sentencias:
+La primera crea un hash con tres símbolos.
+La segunda muestra los valores ordenados.
